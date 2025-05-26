@@ -12,9 +12,7 @@ abstract public class Animal implements Eatable, Moveable, Reproducible {
     }
 
     @Override
-    public void eat() {
-
-    }
+    public abstract double eat();
 
     @Override
     public void reproduce() {
