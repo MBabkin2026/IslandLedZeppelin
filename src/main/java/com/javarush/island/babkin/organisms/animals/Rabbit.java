@@ -1,4 +1,4 @@
-package com.javarush.island.babkin.animals;
+package com.javarush.island.babkin.organisms.animals;
 
 
 import lombok.Getter;

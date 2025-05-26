@@ -1,4 +1,4 @@
-package com.javarush.island.babkin.animals;
+package com.javarush.island.babkin.organisms.animals;
 
 import com.javarush.island.babkin.interfaces.Eatable;
 import com.javarush.island.babkin.interfaces.Moveable;

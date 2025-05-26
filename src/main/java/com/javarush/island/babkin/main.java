@@ -1,7 +1,7 @@
 package com.javarush.island.babkin;
 
 
-import com.javarush.island.babkin.animals.Rabbit;
+import com.javarush.island.babkin.organisms.animals.Rabbit;
 
 public class main {
     public static void main(String[] args) {
