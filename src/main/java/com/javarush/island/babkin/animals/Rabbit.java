@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Rabbit {
+public class Rabbit extends Herbivore {
 
     private String bame;
     private int year;
