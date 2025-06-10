@@ -26,9 +26,9 @@ import java.util.Collections;
     }
 
      public static List <String> animalsClass = new ArrayList<String>(
-            List.of("Волк", "Удав", "Лиса", "Медведь", "Орел",
-                    "Лошадь", "Олень", "Кролик", "Мышь", "Коза", "Овца", "Кабан", "Буйвол", "Утка", "Гусеница",
-                    "Трава"));
+            List.of("Wolf", "Boa", "Fox", "Bear", "Eagle",
+                    "Horse", "Deer", "Rabbit", "Mouse", "Goat", "Sheep", "Wildboar", "Buffalo", "Duck", "Caterpillar",
+                    "Grass"));
 
     int[][] probabilityEat = {
             {0,	0,	0,	0,	0,	10,	15,	60,	80,	60,	70,	15,	10,	40,	0,	0},
