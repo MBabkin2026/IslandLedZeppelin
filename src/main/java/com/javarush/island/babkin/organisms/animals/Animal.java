@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 
-abstract public class Animal implements Eatable, Moveable, Reproducible {
+ public class Animal implements Eatable, Moveable, Reproducible {
 
     @Override
     public void move() {
@@ -16,14 +16,16 @@ abstract public class Animal implements Eatable, Moveable, Reproducible {
     }
 
     @Override
-    public abstract double eat();
+    public double eat(){
+        return 0.0d;
+    }
 
     @Override
     public void reproduce() {
 
     }
 
-    List<String> animalsClass = new ArrayList<String>(
+     public static List <String> animalsClass = new ArrayList<String>(
             List.of("Волк", "Удав", "Лиса", "Медведь", "Орел",
                     "Лошадь", "Олень", "Кролик", "Мышь", "Коза", "Овца", "Кабан", "Буйвол", "Утка", "Гусеница",
                     "Трава"));
