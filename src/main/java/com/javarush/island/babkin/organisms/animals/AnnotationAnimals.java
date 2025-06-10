@@ -1,5 +1,4 @@
-package com.javarush.island.babkin.annotations;
-
+package com.javarush.island.babkin.organisms.animals;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -14,3 +13,4 @@ public @interface AnnotationAnimals {
     int maxSpeedCell();
     double wiegthEating();
 }
+

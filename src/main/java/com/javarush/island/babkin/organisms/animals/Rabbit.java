@@ -6,6 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@AnnotationAnimals(wiegthOneAnimal = 2.d, maxSizeAnimalCell = 150, maxSpeedCell = 2, wiegthEating = 0.45)
 public class Rabbit extends Herbivore {
 
     private String bame;
