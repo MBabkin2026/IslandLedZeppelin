@@ -7,7 +7,7 @@ public class RandomeImportance extends Thread {
     int randomEat;
     int bound;
 
-    public RandomeImportance(int randomEat){
+    public RandomeImportance(int randomEat) {
         bound = 100 - randomEat;
     }
 
@@ -23,8 +23,7 @@ public class RandomeImportance extends Thread {
             } else {
                 System.out.println("Не cъели - " + result);
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Exception RandomeImportance");
         }
     }
