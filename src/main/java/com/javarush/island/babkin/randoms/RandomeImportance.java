@@ -27,4 +27,8 @@ public class RandomeImportance extends Thread {
             System.out.println("Exception RandomeImportance");
         }
     }
+    public static int getRandomQuantity(int maxSizeAnimalCell) {
+        return ThreadLocalRandom.current().nextInt(maxSizeAnimalCell);
+    }
+
 }
