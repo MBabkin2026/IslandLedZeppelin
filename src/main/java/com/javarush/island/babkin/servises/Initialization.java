@@ -1,23 +1,57 @@
 package com.javarush.island.babkin.servises;
 
-import com.javarush.island.babkin.main;
 import com.javarush.island.babkin.organisms.animals.AnnotationAnimals;
 import com.javarush.island.babkin.randoms.RandomeImportance;
+//import java.lang.Object;
 
 public class Initialization {
 
-    private int countAnimal;
-    private double packweight;
-    private double foodAllPack;
+//    Class clazz;
+//    ExampleClass exampleClass;
+    ExampleClass cloneExampleClass;
+
+
+    public Initialization(Class clazz) throws CloneNotSupportedException {
+        var exampleClass = Initialization.initClass(clazz);
+        ExampleClass cloneExampleClass = exampleClass.clone();
+    }
+
+    public ExampleClass getCloneExampleClass() {
+        return cloneExampleClass;
+    }
+
+    //    public static ExampleClass getPrototype(exampleClass) {
+//        try {
+//            return getClone();
+//        } catch (CloneNotSupportedException e) {
+//            throw new RuntimeException(e);
+//        }
+//        Product product = new Product("Macbook Pro", 3000);
+//        Product copyOfProduct = (Product) product.clone();
+//    }
+
+//    @Override
+//    protected Object clone() throws CloneNotSupportedException {
+//        return super.clone();
+//    }
+
+//    public static ExampleClass getClone() throws CloneNotSupportedException {
+//        return (ExampleClass) exampleClass.clone();
+//    }
+
+
+//    private int countAnimal;
+//    private double packweight;
+//    private double foodAllPack;
 
 //        public Initialization(int countAnimal, double packweight, double foodAllPack){
 //            this.countAnimal =
 //        }
 
 
-    private double wiegthOneAnimal;
-
-    private static AnnotationAnimals initialAnimal;
+//    private double wiegthOneAnimal;
+//
+//    private static AnnotationAnimals initialAnimal;
 
 //        public int getCountAnimal() {
 //            countAnimal = RandomeImportance.getRandomQuantity(new ExampleClas().getMaxSizeAnimalCell());
@@ -31,9 +65,9 @@ public class Initialization {
 //            foodAllPack = getCountAnimal() * initialAnimal.wiegthEating();
 //        }
 
-    public static AnnotationAnimals getAnnotationAnimals() {
-        return initialAnimal;
-    }
+//    public static AnnotationAnimals getAnnotationAnimals() {
+//        return initialAnimal;
+//    }
 
 //        public static double getWiegthOneAnimal() {
 //            return getAnnotationAnimals().wiegthOneAnimal();
@@ -43,54 +77,10 @@ public class Initialization {
     //        AnnotationAnimals initialAnimal = (AnnotationAnimals) animalClass.getAnnotation(AnnotationAnimals.class);
 
 
-    public static class ExampleClass {
-        private int countAnimal;
-        private double packweight;
-        private double foodAllPack;
-
-        private double wiegthOneAnimal;
-        private int maxSizeAnimalCell;
-        private int maxSpeedCell;
-        private double wiegthEating;
-
-        public ExampleClass(double wiegthOneAnimal, int maxSizeAnimalCell, int maxSpeedCell, double wiegthEating, int countAnimal, double packweight, double foodAllPack) {
-            this.wiegthOneAnimal = wiegthOneAnimal;
-            this.maxSizeAnimalCell = maxSizeAnimalCell;
-            this.maxSpeedCell = maxSpeedCell;
-            this.wiegthEating = wiegthEating;
-        }
-
-        public double getWiegthOneAnimal() {
-            return wiegthOneAnimal;
-        }
-
-        public int getMaxSizeAnimalCell() {
-            return maxSizeAnimalCell;
-        }
-
-        public int getMaxSpeedCell() {
-            return maxSpeedCell;
-        }
-
-        public double getWiegthEating() {
-            return wiegthEating;
-        }
-
-        public int getCountAnimal() {
-            return countAnimal;
-        }
-
-        public double getPackweight() {
-            return packweight;
-        }
-
-        public double getFoodAllPack() {
-            return foodAllPack;
-        }
-    }
 
 
-    public static main.Initialization.ExampleClass initClass(Class animalClass) {
+
+    public static ExampleClass initClass(Class animalClass) {
         double wiegthOneAnimal;
         int maxSizeAnimalCell;
         int maxSpeedCell;
@@ -118,7 +108,7 @@ public class Initialization {
         foodAllPack = countAnimal * wiegthEating;
 
 
-        return new main.Initialization.ExampleClass(wiegthOneAnimal, maxSizeAnimalCell, maxSpeedCell, wiegthEating, countAnimal, packweight, foodAllPack);
+        return new ExampleClass(wiegthOneAnimal, maxSizeAnimalCell, maxSpeedCell, wiegthEating, countAnimal, packweight, foodAllPack);
     }
 }
 
