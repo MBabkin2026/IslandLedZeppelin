@@ -1,0 +1,14 @@
+package com.javarush.island.babkin.organisms.animals;
+
+@AnnotationAnimals(wiegthOneAnimal = 50.d, maxSizeAnimalCell = 30, maxSpeedCell = 3, wiegthEating = 8.d)
+public class Boa extends Predator implements Cloneable {
+    @Override
+    public double eat() {
+        return 0;
+    }
+
+    @Override
+    public Wolf clone() throws CloneNotSupportedException {
+        return (Wolf) super.clone();
+    }
+}
