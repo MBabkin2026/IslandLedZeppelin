@@ -1,13 +1,15 @@
-package com.javarush.island.babkin.organisms.animals;
+package com.javarush.island.babkin.organisms.animals.herbivores;
 
 
+import com.javarush.island.babkin.organisms.animals.AnnotationAnimals;
+import com.javarush.island.babkin.organisms.animals.Herbivore;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AnnotationAnimals(wiegthOneAnimal = 2.d, maxSizeAnimalCell = 150, maxSpeedCell = 2, wiegthEating = 0.45)
-public class Rabbit extends Herbivore {
+public class Rabbit extends Herbivore implements Cloneable {
 
     private String bame;
     private int year;
@@ -68,5 +70,8 @@ public class Rabbit extends Herbivore {
         return remainGrass;
     }
 
-
+    @Override
+    public Rabbit clone() throws CloneNotSupportedException {
+        return (Rabbit) super.clone();
+    }
 }
