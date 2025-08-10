@@ -3,13 +3,23 @@ package com.javarush.island.babkin.randoms;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class RandomeImportance extends Thread {
+public class RandomImportance extends Thread {
     int randomEat;
     int bound;
 
-    public RandomeImportance(int randomEat) {
+    public RandomImportance(int randomEat) {
         bound = 100 - randomEat;
     }
+
+    public static int getRandom(int value) {
+        return ThreadLocalRandom.current().nextInt(value);
+    }
+
+    public static double getRandom(double value) {
+        return ThreadLocalRandom.current().nextDouble(value);
+    }
+
+
 
     public void setRandomEat() {
         try {

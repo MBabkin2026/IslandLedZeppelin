@@ -1,18 +1,23 @@
 package com.javarush.island.babkin;
 
 
-import com.javarush.island.babkin.organisms.animals.Animal;
-import com.javarush.island.babkin.organisms.animals.AnnotationAnimals;
-import com.javarush.island.babkin.organisms.animals.Rabbit;
-import com.javarush.island.babkin.organisms.animals.Wolf;
+import com.javarush.island.babkin.organisms.animals.*;
+import com.javarush.island.babkin.organisms.animals.herbivores.Rabbit;
+import com.javarush.island.babkin.organisms.animals.predators.Wolf;
 import com.javarush.island.babkin.organisms.plants.Grass;
-import com.javarush.island.babkin.randoms.RandomeImportance;
+import com.javarush.island.babkin.randoms.RandomImportance;
+import com.javarush.island.babkin.servises.ExampleClass;
+import com.javarush.island.babkin.servises.Initialization;
 
 
+
+import java.lang.annotation.Annotation;
 import java.util.*;
 
+import static com.javarush.island.babkin.servises.Initialization.mapCopyAnimals;
+
 public class main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException {
         int bound = 3;
 
 //		for(int i = 0; i < 100; i++) {
@@ -75,7 +80,7 @@ public class main {
         mapAnim.put("Wolf", new Wolf());
         mapAnim.put("Rabbit", new Rabbit());
 
-        System.out.println(mapAnim.get("Wolf").getClass());
+        System.out.println("mapAnim.get(\"Wolf\").getClass() ------ " + mapAnim.get("Wolf").getClass());
 
         System.out.println();
 
@@ -85,129 +90,237 @@ public class main {
             }
         }
 
+
         System.out.println(Animal.animalsClass.get(0));
         //проверка инициализации животных в массив и выбора еее оттуд по классу и аннотации
+
+        var exampleClass1 = ExampleClass.initClass(Rabbit.class);
+        System.out.println(exampleClass1.getClass() + " - exampleClass1");
+
+        try {
+            var cloneRabbit = exampleClass1.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+        Class<Rabbit> rabbitClass = Rabbit.class;
+        Rabbit rabbit1 = new Rabbit();
+
+//        Мы получаем клон и из клона выкачиваем экземпляр класса с аннотациями
+
+        System.out.println("Animal.animalsClass.get(7) - " + Animal.animalsClass.get(7));
+        String s = Animal.animalsClass.get(7);
+
+
+
+
+
+        var clone = new Rabbit().clone();
+        Object rabbit2 = mapAnim.get("Rabbit");
+//        Class<?> aClass1 = new rabbit2.getClass();
+
+        var exampleClass2 = ExampleClass.initClass(clone.getClass());
+        var maxSizeAnimalCell1 = exampleClass2.getMaxSizeAnimalCell();
+        System.out.println("maxSizeAnimalCell1 - " + maxSizeAnimalCell1);
+
+
+//        Мы записываем в мапу копии классов и с мапы по Строке выводим копию классов животных и их инициализируем
+        Map<String, ? super Animal> mapAnim2 = new HashMap<>();
+        mapAnim2.put("Wolf", new Wolf().clone());
+        mapAnim2.put("Rabbit", new Rabbit().clone());
+
+        Object rabbit3 = mapAnim2.get("Rabbit");
+        var exampleClass3 = ExampleClass.initClass(rabbit3.getClass());
+        var maxSizeAnimalCell2 = exampleClass3.getMaxSizeAnimalCell();
+        System.out.println("maxSizeAnimalCell2 - " + maxSizeAnimalCell2);
+
+
+//        Initialization init =  new Initialization(exampleClass1.getClass());
+//        var cloneExampleClass = init.getCloneExampleClass();
+
+        System.out.println(Initialization.getMapCopyAnimals());
+//        mapCopyAnimals.put("Boa", new Boa());
+//        mapCopyAnimals.put("Wolf", new Wolf());
+//        mapCopyAnimals.put("Rabbit", new Rabbit());
+        Initialization.defaultFillingMapCopyAnimals();
+
+
+//        Logic автоматическое заполнение копиями классов
+
+        var string = Initialization.getMapCopyAnimals().toString();
+        System.out.println(string);
+//        получение строки животное по номеру
+//        получение объекта животного по ключу название животного
+//        получение экземпляра класса животного
+//        получение полей у экземпляра класса
+
+        var str1 = Animal.animalsClass.get(0);
+        var object1 = mapCopyAnimals.get(str1);
+        System.out.println("object1 --- " + object1);
+        Class<?> aClass123 = object1.getClass();
+        var exampleClass4 = ExampleClass.initClass(aClass123);
+        var maxSizeAnimalCell3 = exampleClass4.getMaxSizeAnimalCell();
+        System.out.println("maxSizeAnimalCell3 --- " + maxSizeAnimalCell3);
+
+
+
+
+
+        //        Рандомное (по строке) инициализация на карту экземпляров классов
+        //        с рандомными значениями(параметрами) и их кол-во
+
+        for (int i = 0; i < 2; i++) {
+            var randomQuantity = RandomImportance.getRandomQuantity(3);
+            var s1 = Animal.animalsClass.get(randomQuantity);
+            var o = mapCopyAnimals.get(s1);
+
+            System.out.println(randomQuantity);
+            System.out.println(s1);
+            System.out.println(o);
+        }
+
+        var countCopyAnimals = Initialization.getCountCopyAnimals();
+        System.out.println("countCopyAnimals - " +  countCopyAnimals);
+
+//        for (int i = 0; i < 10; i++) {
+            var random = RandomImportance.getRandom(countCopyAnimals);
+            var s2 = Animal.animalsClass.get(0);
+            var o2 = mapCopyAnimals.get(s2);
+
+            System.out.println(o2);
+//        }
+
+        Class<?> aClass1 = o2.getClass();
+
+        var exampleClass5 = ExampleClass.initClass(aClass1);
+
+        var wiegthOneAnimal1 = exampleClass5.getWiegthOneAnimal();
+        var maxSizeAnimalCell4 = exampleClass5.getMaxSizeAnimalCell();
+        var maxSpeedCell1 = exampleClass5.getMaxSpeedCell();
+        var wiegthEating1 = exampleClass5.getWiegthEating();
+
+        var countAnimal1 = exampleClass5.getCountAnimal();
+        var packweight1 = exampleClass5.getPackweight();
+        var foodAllPack1 = exampleClass5.getFoodAllPack();
+
+        System.out.println(wiegthOneAnimal1);
+        System.out.println(maxSizeAnimalCell4);
+        System.out.println(maxSpeedCell1);
+        System.out.println(wiegthEating1);
+
+        System.out.println(countAnimal1);
+        System.out.println(packweight1);
+        System.out.println(foodAllPack1);
+
+//      кушать по классу определяем тип животного и попался ли на его пути тип который он может кушать
+//      если может то с определенной долей вероятности он его съедает (рандом)
+//
+        Rabbit rab = new Rabbit();
+        var length = Animal.probabilityEat;
+        System.out.println(Arrays.deepToString(length));
+
+//        MULTIPLICATION_TABLE = new int[10][10];
+//
+//        for (int i = 0; i < MULTIPLICATION_TABLE.length; i++) {
+//            for (int j = 0; j < MULTIPLICATION_TABLE[i].length; j++) {
+//                MULTIPLICATION_TABLE[i][j] = (i + 1) * (j + 1);
+//            }
+//
+//        }
+//
+//        for (int[] massive : MULTIPLICATION_TABLE) {
+//            for (int value : massive) {
+//                System.out.print(value + " ");
+//            }
+//            System.out.println();
+//        }
+
+//        По классу определяем текст(кто), по тексту номер в листе
+//        по номеру определяем номер вхождения 1го массива
+//        далее классу определяем текст (кого) кушаем, по тексту номер в листе
+//        по номеру определяем номер вхождения массива (вероятность съедания)
+
+
+
+//        var str1 = Animal.animalsClass.get(0);
+
+
+        for (int i = 0; i < Animal.probabilityEat.length; i++) {
+            if (0 == i) {
+                for (int j = 0; j < Animal.probabilityEat[i].length; j++) {
+                    if (7 == j) {
+                        System.out.print(Animal.probabilityEat[i][j]);
+                    }
+                }
+                System.out.println();
+            }
+        }
+
+
+
+
+//  номер класса нашего животного
+        int thisNumberClassAnimal = 0;
+//  номер класса другого животного
+        int thenNumberClassAnimal = 7;
+
+
+
+
+        var elementAtIndex = Optional.of(Animal.probabilityEat)
+                .filter(arr -> arr.length > thisNumberClassAnimal)
+                .map(arr -> arr[thisNumberClassAnimal])
+                .filter(row -> row.length > thenNumberClassAnimal)
+                .map(row -> row[thenNumberClassAnimal])
+                .get();
+
+        System.out.println("elementAtIndex - " + elementAtIndex);
+
+
+
+        System.out.println("---------------------------------------------------------------------------------");
+
+        var wiegthOneAnimal = exampleClass1.getWiegthOneAnimal();
+        System.out.println(wiegthOneAnimal + " - wiegthOneAnimal");
+        var countAnimal = exampleClass1.getCountAnimal();
+        var foodAllPack = exampleClass1.getFoodAllPack();
+        var maxSpeedCell = exampleClass1.getMaxSpeedCell();
+        var packweight = exampleClass1.getPackweight();
+        var maxSizeAnimalCell = exampleClass1.getMaxSizeAnimalCell();
+        var wiegthEating = exampleClass1.getWiegthEating();
+
+        System.out.println(countAnimal + " - wcountAnimal");
+        System.out.println(foodAllPack + " - wfoodAllPack");
+        System.out.println(maxSpeedCell + " - wmaxSpeedCell");
+        System.out.println(packweight + " - wpackweight");
+        System.out.println(maxSizeAnimalCell + " - wmaxSizeAnimalCell");
+        System.out.println(wiegthEating + " - wwiegthEating");
+
+
+
+        for (Annotation annotation : exampleClass1.getClass().getAnnotations()) {
+            System.out.println(annotation);
+        }
+        for (Class<?> aClass : exampleClass1.getClass().getClasses()) {
+            System.out.println(aClass);
+        }
+
+
+        System.out.println("---------------------------------------------------------------------------------");
+
+
+        var exampleClass = ExampleClass.initClass(new Rabbit().getClass());
+
+        System.out.println(Optional.ofNullable(exampleClass).getClass() + " - exampleClass");
+
 
     }
 
     //Создаю клсасс инициализации для объектов
 
-    public static class Initialization {
-        private int countAnimal;
-        private double packweight;
-        private double foodAllPack;
 
-//        public Initialization(int countAnimal, double packweight, double foodAllPack){
-//            this.countAnimal =
-//        }
-
-
-        private double wiegthOneAnimal;
-
-        private static AnnotationAnimals initialAnimal;
-
-//        public int getCountAnimal() {
-//            countAnimal = RandomeImportance.getRandomQuantity(new ExampleClas().getMaxSizeAnimalCell());
-//        }
-
-//        public double getPackweight() {
-//            packweight = getWiegthOneAnimal() * getCountAnimal();
-//        }
-//
-//        public double getFoodAllPack() {
-//            foodAllPack = getCountAnimal() * initialAnimal.wiegthEating();
-//        }
-
-        public static AnnotationAnimals getAnnotationAnimals() {
-            return initialAnimal;
-        }
-
-//        public static double getWiegthOneAnimal() {
-//            return getAnnotationAnimals().wiegthOneAnimal();
-//        }
-
-
-        //        AnnotationAnimals initialAnimal = (AnnotationAnimals) animalClass.getAnnotation(AnnotationAnimals.class);
-
-
-        public static class ExampleClass {
-            private int countAnimal;
-            private double packweight;
-            private double foodAllPack;
-
-            private double wiegthOneAnimal;
-            private int maxSizeAnimalCell;
-            private int maxSpeedCell;
-            private double wiegthEating;
-
-            public ExampleClass(double wiegthOneAnimal, int maxSizeAnimalCell, int maxSpeedCell, double wiegthEating, int countAnimal, double packweight, double foodAllPack) {
-                this.wiegthOneAnimal = wiegthOneAnimal;
-                this.maxSizeAnimalCell = maxSizeAnimalCell;
-                this.maxSpeedCell = maxSpeedCell;
-                this.wiegthEating = wiegthEating;
-            }
-
-            public double getWiegthOneAnimal() {
-                return wiegthOneAnimal;
-            }
-
-            public int getMaxSizeAnimalCell() {
-                return maxSizeAnimalCell;
-            }
-
-            public int getMaxSpeedCell() {
-                return maxSpeedCell;
-            }
-
-            public double getWiegthEating() {
-                return wiegthEating;
-            }
-
-            public int getCountAnimal() {
-                return countAnimal;
-            }
-
-            public double getPackweight() {
-                return packweight;
-            }
-
-            public double getFoodAllPack() {
-                return foodAllPack;
-            }
-        }
-
-
-        public static ExampleClass initClass(Class animalClass) {
-            double wiegthOneAnimal;
-            int maxSizeAnimalCell;
-            int maxSpeedCell;
-            double wiegthEating;
-
-            int countAnimal;
-            double packweight;
-            double foodAllPack;
-
-
-
-            if (!animalClass.isAnnotationPresent(AnnotationAnimals.class)) {
-                throw new RuntimeException("animalClass param is not AnnotationAnimals");
-            }
-
-
-            AnnotationAnimals initialAnimal = (AnnotationAnimals) animalClass.getAnnotation(AnnotationAnimals.class);
-            wiegthOneAnimal = initialAnimal.wiegthOneAnimal();
-            maxSizeAnimalCell = initialAnimal.maxSizeAnimalCell();
-            maxSpeedCell = initialAnimal.maxSpeedCell();
-            wiegthEating = initialAnimal.wiegthEating();
-
-            countAnimal = RandomeImportance.getRandomQuantity(maxSizeAnimalCell);
-            packweight = wiegthEating * countAnimal;
-            foodAllPack = countAnimal * wiegthEating;
-
-
-            return new ExampleClass(wiegthOneAnimal, maxSizeAnimalCell, maxSpeedCell, wiegthEating, countAnimal, packweight, foodAllPack);
-        }
-    }
 
 
     public static boolean init(Class animalClass) {
