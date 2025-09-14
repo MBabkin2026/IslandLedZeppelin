@@ -1,6 +1,7 @@
 package com.javarush.island.babkin;
 
 
+import com.javarush.island.babkin.map.MapGame;
 import com.javarush.island.babkin.organisms.animals.*;
 import com.javarush.island.babkin.organisms.animals.herbivores.Rabbit;
 import com.javarush.island.babkin.organisms.animals.predators.Wolf;
@@ -16,7 +17,7 @@ import java.util.*;
 
 import static com.javarush.island.babkin.servises.Initialization.mapCopyAnimals;
 
-public class main {
+public class Main {
     public static void main(String[] args) throws CloneNotSupportedException {
         int bound = 3;
 
@@ -24,6 +25,100 @@ public class main {
         int value = 1 + new Random().nextInt(bound);
         System.out.println(value);
 //		}
+
+        //создаем игровую карту
+
+
+
+
+
+        Set<ExampleClass>[][] gameMap = new HashSet[3][3];
+        for (int i = 0; i < gameMap.length; i++) {
+            for (int j = 0; j < gameMap[i].length; j++) {
+                gameMap[i][j] = new HashSet<>();
+            }
+        }
+
+        for (int i = 0; i < MapGame.getMapGame().length; i++) {
+            for (int j = 0; j < MapGame.getMapGame()[i].length; j++) {
+                Set<ExampleClass> setRandomAnimal = new HashSet<>();
+                for(int x = 0; x < RandomImportance.getRandomQuantity(Animal.animalsClass.size()); x++){
+                    var randomQuantity = RandomImportance.getRandomQuantity(Animal.animalsClass.size());
+                    var nameAnimal = Animal.animalsClass.get(randomQuantity);
+                    var classExample = Animal.mapAnimals.get(nameAnimal);
+                    var add = setRandomAnimal.add(ExampleClass.initClass(classExample));
+//                    System.out.println(randomQuantity);
+//                    System.out.println(nameAnimal);
+//                    System.out.println(classExample);
+                }
+                MapGame.getMapGame()[i][j] = setRandomAnimal;
+                System.out.println(MapGame.getMapGame()[i][j]);
+            }
+        }
+
+
+
+
+        for (Object obj : gameMap) {
+            System.out.println(obj);
+        }
+
+        for (int i = 0; i < gameMap.length; i++) {
+            for (int j = 0; j < gameMap[i].length; j++) {
+                System.out.println("i - " + i + "j - " + j + " ; gameMap[i][j] - " + gameMap[i][j]);
+            }
+        }
+
+        System.out.println("------------------------------------------------------------------------------------------");
+
+//создаем экземпляры классов
+        Set<ExampleClass> setAnimal = new HashSet<>();
+        var exampleClass6 = ExampleClass.initClass(Rabbit.class);
+
+        setAnimal.add(exampleClass6);
+        setAnimal.add(ExampleClass.initClass(Wolf.class));
+        setAnimal.add(ExampleClass.initClass(Rabbit.class));
+
+        gameMap[0][0] = setAnimal;
+
+//        for (Set<ExampleClass> obj : gameMap) {
+//            System.out.println(obj);
+//            obj.stream().forEach(x -> System.out.println(x.getWiegthOneAnimal()));
+//        }
+
+
+        System.out.println("888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888");
+
+        setAnimal.stream()
+
+                .peek(e ->
+                        System.out.println(
+                                "e.getWiegthOneAnimal()" + e.getWiegthOneAnimal() +
+                                        "e.getMaxSizeAnimalCell()" + e.getMaxSizeAnimalCell() +
+                                        "e.getMaxSpeedCell()" + e.getMaxSpeedCell() +
+                                        "e.getWiegthEating()" + e.getWiegthEating()+
+                                        "e.getCountAnimal()" + e.getCountAnimal() +
+                                        "e.getPackweight()" + e.getPackweight() +
+                                        "e.getFoodAllPack()" + e.getFoodAllPack()
+
+                        )
+                )
+                .forEach(System.out::println);
+
+        var rabbit4 = new Rabbit();
+        System.out.println("setAnimal - " + setAnimal);
+        var contains = setAnimal.contains(rabbit4);
+        System.out.println("contains - " + contains);
+
+//в каждой ячейке будет мапа с ключом класса, и с самим классом с его характеристиками
+        Map<? super Animal, ? super Animal> map = new HashMap<>();
+        map.put(new Rabbit(), new Rabbit());
+
+        System.out.println("map.equals(\"Rabbit\")  ---" + map.containsKey(rabbit4));
+
+
+
+
 
         Grass grass = new Grass();
         grass.setBirthGrass();
@@ -96,6 +191,8 @@ public class main {
 
         var exampleClass1 = ExampleClass.initClass(Rabbit.class);
         System.out.println(exampleClass1.getClass() + " - exampleClass1");
+
+
 
         try {
             var cloneRabbit = exampleClass1.clone();
