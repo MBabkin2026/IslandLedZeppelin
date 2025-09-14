@@ -8,6 +8,7 @@ import com.javarush.island.babkin.organisms.animals.predators.Wolf;
 import com.javarush.island.babkin.organisms.plants.Grass;
 import com.javarush.island.babkin.randoms.RandomImportance;
 import com.javarush.island.babkin.servises.ExampleClass;
+import com.javarush.island.babkin.servises.GenerationOrganizm;
 import com.javarush.island.babkin.servises.Initialization;
 
 
@@ -33,39 +34,49 @@ public class Main {
 
 
         Set<ExampleClass>[][] gameMap = new HashSet[3][3];
+
         for (int i = 0; i < gameMap.length; i++) {
             for (int j = 0; j < gameMap[i].length; j++) {
                 gameMap[i][j] = new HashSet<>();
             }
         }
 
-        for (int i = 0; i < MapGame.getMapGame().length; i++) {
-            for (int j = 0; j < MapGame.getMapGame()[i].length; j++) {
-                Set<ExampleClass> setRandomAnimal = new HashSet<>();
-                for(int x = 0; x < RandomImportance.getRandomQuantity(Animal.animalsClass.size()); x++){
-                    var randomQuantity = RandomImportance.getRandomQuantity(Animal.animalsClass.size());
-                    var nameAnimal = Animal.animalsClass.get(randomQuantity);
-                    var classExample = Animal.mapAnimals.get(nameAnimal);
-                    var add = setRandomAnimal.add(ExampleClass.initClass(classExample));
-//                    System.out.println(randomQuantity);
-//                    System.out.println(nameAnimal);
-//                    System.out.println(classExample);
-                }
-                MapGame.getMapGame()[i][j] = setRandomAnimal;
-                System.out.println(MapGame.getMapGame()[i][j]);
-            }
-        }
 
 
 
+// Заселение мира
 
-        for (Object obj : gameMap) {
+//        var mapGame = MapGame.getMapGame();
+//        var animalsClass = Animal.animalsClass;
+//        var randomQuantity = RandomImportance.getRandomQuantity(animalsClass.size());
+//
+//        for (int i = 0; i < mapGame.length; i++) {
+//            for (int j = 0; j < mapGame[i].length; j++) {
+//                Set<ExampleClass> setRandomAnimal = new HashSet<>();
+//                for(int x = 0; x < randomQuantity; x++){
+//                    var randomClass = RandomImportance.getRandomQuantity(animalsClass.size());
+//                    var nameAnimal = animalsClass.get(randomClass);
+//                    var classExample = Animal.mapAnimals.get(nameAnimal);
+//                    var add = setRandomAnimal.add(ExampleClass.initClass(classExample));
+////                    System.out.println(randomQuantity);
+////                    System.out.println(nameAnimal);
+////                    System.out.println(classExample);
+//                }
+//                mapGame[i][j] = setRandomAnimal;
+//                System.out.println(mapGame[i][j]);
+//            }
+//        }
+
+        var generationOrganizm = GenerationOrganizm.getGenerationOrganizm();
+
+
+        for (Object obj : generationOrganizm) {
             System.out.println(obj);
         }
-
-        for (int i = 0; i < gameMap.length; i++) {
-            for (int j = 0; j < gameMap[i].length; j++) {
-                System.out.println("i - " + i + "j - " + j + " ; gameMap[i][j] - " + gameMap[i][j]);
+//
+        for (int i = 0; i < generationOrganizm.length; i++) {
+            for (int j = 0; j < generationOrganizm[i].length; j++) {
+                System.out.println("i - " + i + "j - " + j + " ; mapGame[i][j] - " + generationOrganizm[i][j]);
             }
         }
 
@@ -269,11 +280,11 @@ public class Main {
         //        с рандомными значениями(параметрами) и их кол-во
 
         for (int i = 0; i < 2; i++) {
-            var randomQuantity = RandomImportance.getRandomQuantity(3);
-            var s1 = Animal.animalsClass.get(randomQuantity);
+            var randomQuantity123 = RandomImportance.getRandomQuantity(3);
+            var s1 = Animal.animalsClass.get(randomQuantity123);
             var o = mapCopyAnimals.get(s1);
 
-            System.out.println(randomQuantity);
+            System.out.println(randomQuantity123);
             System.out.println(s1);
             System.out.println(o);
         }
