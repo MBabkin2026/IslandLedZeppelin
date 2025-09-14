@@ -6,6 +6,8 @@ import com.javarush.island.babkin.organisms.animals.Herbivore;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Objects;
+
 @Getter
 @Setter
 @AnnotationAnimals(wiegthOneAnimal = 2.d, maxSizeAnimalCell = 150, maxSpeedCell = 2, wiegthEating = 0.45)
@@ -73,5 +75,17 @@ public class Rabbit extends Herbivore implements Cloneable {
     @Override
     public Rabbit clone() throws CloneNotSupportedException {
         return (Rabbit) super.clone();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Rabbit rabbit = (Rabbit) o;
+        return countRabbit == rabbit.countRabbit && Double.compare(lmititEatGrass, rabbit.lmititEatGrass) == 0 && Double.compare(sumEatGrass, rabbit.sumEatGrass) == 0 && Double.compare(countGrass, rabbit.countGrass) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(countRabbit, lmititEatGrass, sumEatGrass, countGrass);
     }
 }
