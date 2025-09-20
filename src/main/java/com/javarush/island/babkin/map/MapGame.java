@@ -23,4 +23,12 @@ public class MapGame {
     public static Set<ExampleClass>[][] getMapGame() {
         return mapGame;
     }
+
+    public static int getCOUNTROWS() {
+        return COUNTROWS;
+    }
+
+    public static int getCOUNTCOLUMNS() {
+        return COUNTCOLUMNS;
+    }
 }
