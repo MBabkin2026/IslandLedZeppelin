@@ -10,7 +10,7 @@ public class MapGame {
     private static final int COUNTROWS = 3;
     private static final int COUNTCOLUMNS = 3;
 
-    private static Set<ExampleClass>[][] mapGame = new HashSet[COUNTROWS][COUNTCOLUMNS];
+    private static final Set<ExampleClass>[][] mapGame = new HashSet[COUNTROWS][COUNTCOLUMNS];
 
     static {
         for (int i = 0; i < mapGame.length; i++) {
