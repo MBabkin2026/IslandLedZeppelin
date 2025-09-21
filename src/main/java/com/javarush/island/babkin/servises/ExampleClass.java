@@ -96,6 +96,10 @@ public class ExampleClass implements Cloneable {
         return foodAllPack;
     }
 
+    public void setPackweight(double packweight) {
+        this.packweight = packweight;
+    }
+
     @Override
     public ExampleClass clone() throws CloneNotSupportedException {
         return (ExampleClass) super.clone();
