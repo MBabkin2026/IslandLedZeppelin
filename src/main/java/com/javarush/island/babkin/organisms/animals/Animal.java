@@ -21,7 +21,7 @@ public class Animal implements Eatable, Moveable, Reproducible {
 
     public static Map<String, Class> mapAnimals;
 
-    static{
+    static {
         mapAnimals = new HashMap<>();
         setMapAnimals();
     }
@@ -46,7 +46,6 @@ public class Animal implements Eatable, Moveable, Reproducible {
                     "Horse", "Deer", "Rabbit", "Mouse", "Goat", "Sheep", "Wildboar", "Buffalo", "Duck", "Caterpillar",
                     "Grass"));
 
-
     public static int[][] probabilityEat = {
             {0, 0, 0, 0, 0, 10, 15, 60, 80, 60, 70, 15, 10, 40, 0, 0},
             {0, 0, 15, 0, 0, 0, 0, 20, 40, 0, 0, 0, 0, 10, 0, 0},
@@ -64,9 +63,6 @@ public class Animal implements Eatable, Moveable, Reproducible {
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 90, 100},
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100}
     };
-
-
-
 
     private static void setMapAnimals() {
 
@@ -89,7 +85,6 @@ public class Animal implements Eatable, Moveable, Reproducible {
 
         mapAnimals.put("Grass", Grass.class);
     }
-
 
 
 }
