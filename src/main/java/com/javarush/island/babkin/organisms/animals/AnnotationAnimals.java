@@ -16,5 +16,7 @@ public @interface AnnotationAnimals {
     int maxSpeedCell();
 
     double wiegthEating();
+
+    String icon();
 }
 
