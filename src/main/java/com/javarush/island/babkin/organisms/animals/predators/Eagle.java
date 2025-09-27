@@ -4,7 +4,7 @@ import com.javarush.island.babkin.organisms.animals.AnnotationAnimals;
 import com.javarush.island.babkin.organisms.animals.Predator;
 
 
-@AnnotationAnimals(wiegthOneAnimal = 500.d, maxSizeAnimalCell = 5, maxSpeedCell = 2, wiegthEating = 80.d)
+@AnnotationAnimals(wiegthOneAnimal = 500.d, maxSizeAnimalCell = 5, maxSpeedCell = 2, wiegthEating = 80.d, icon = "\uD83E\uDD85")
 public class Eagle extends Predator implements Cloneable {
     @Override
     public double eat() {
