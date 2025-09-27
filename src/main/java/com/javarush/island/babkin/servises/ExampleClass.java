@@ -105,12 +105,6 @@ public class ExampleClass implements Cloneable {
         return (ExampleClass) super.clone();
     }
 
-    // Уникальный идентификатор
-//    public String getUniqueId() {
-//        return name; //Простое решение, можно изменить, если нужно больше уникальности
-//    }
-
-    // Метод для объединения с другим ExampleClass
     public void merge(ExampleClass other) {
         this.countAnimal += other.countAnimal;
         this.packweight += other.packweight;
