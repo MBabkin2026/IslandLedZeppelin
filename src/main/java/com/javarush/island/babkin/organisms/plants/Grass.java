@@ -4,7 +4,7 @@ import com.javarush.island.babkin.organisms.animals.AnnotationAnimals;
 
 import java.util.Objects;
 
-@AnnotationAnimals(wiegthOneAnimal = 1.d, maxSizeAnimalCell = 200, maxSpeedCell = 0, wiegthEating = 0.d, icon = "\uD83C\uDF3F")
+@AnnotationAnimals(wiegthOneAnimal = 1.d, maxSizeAnimalCell = 200, maxSpeedCell = 0, wiegthEating = 0.d, icon = "\uD83C\uDF3F", shortName = "Gr")
 public class Grass {
     private double countGrass;
 

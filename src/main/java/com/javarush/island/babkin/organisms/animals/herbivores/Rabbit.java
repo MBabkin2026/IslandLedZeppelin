@@ -10,7 +10,7 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@AnnotationAnimals(wiegthOneAnimal = 2.d, maxSizeAnimalCell = 150, maxSpeedCell = 2, wiegthEating = 0.45, icon = "\uD83D\uDC07")
+@AnnotationAnimals(wiegthOneAnimal = 2.d, maxSizeAnimalCell = 150, maxSpeedCell = 2, wiegthEating = 0.45, icon = "\uD83D\uDC07", shortName = "Rb")
 public class Rabbit extends Herbivore implements Cloneable {
 
     private String bame;
