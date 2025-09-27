@@ -18,5 +18,7 @@ public @interface AnnotationAnimals {
     double wiegthEating();
 
     String icon();
+
+    String shortName();
 }
 
