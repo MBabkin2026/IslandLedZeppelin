@@ -48,17 +48,6 @@ public class ExampleClass implements Cloneable {
             throw new RuntimeException("animalClass param is not AnnotationAnimals");
         }
 
-        //   Вес одного животного, кг 2
-//   Максимальное количество животных этого вида на одной клетке 150
-//   Скорость перемещения, не более чем, клеток за ход 2
-//   Сколько килограммов пищи нужно животному для полного насыщения
-
-        //при инициал рандомно животных распологаем жл Максимальное количество
-//        int countAnimal = RandomeImportance.getRandomQuantity(initialAnimal.maxSizeAnimalCell());
-//         вес всей стаи double packWeight = wiegthOneAnimal * countAnimal;
-//        сколько кг всей стаи нужно для утоления голода
-//        double foodAllPack = countAnimal * initialAnimal.wiegthEating();
-
 
         AnnotationAnimals initialAnimal = (AnnotationAnimals) animalClass.getAnnotation(AnnotationAnimals.class);
         wiegthOneAnimal = initialAnimal.wiegthOneAnimal();
