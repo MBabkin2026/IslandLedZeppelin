@@ -7,6 +7,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
+import static com.javarush.island.babkin.map.MapGame.*;
+
 public class ViewAnimal {
 
     private static final int LIMIT = 5;
@@ -32,13 +34,12 @@ public class ViewAnimal {
     private static final String SIMBOL_DOWN_RIGHT = "╝";
 
 
-    public static void doViewAnimal() {
-        Set<ExampleClass>[][] mapGame = MapGame.getMapGame();
-        int row = 5;
-        int column = 5;
+    public static void doViewAnimal(int viewRow, int viewColumn) {
+        Set<ExampleClass>[][] mapGame = getMapGame();
+        int row = viewRow;
+        int column = viewColumn;
         int limitAnimalviewInCell = 5;
-
-        String emptySymbol = " ";
+        String noAnimalSymbol = "  ";
 
         for (int i = 0; i < row; i++) {
             System.out.println(i == 0
@@ -50,20 +51,26 @@ public class ViewAnimal {
                 Set<ExampleClass> exampl = mapGame[i][j];
                 StringBuilder cellContent = new StringBuilder();
 
-
                 long limit = limitAnimalviewInCell;
+                int animalCount = 0;
+
                 for (ExampleClass animal : exampl) {
                     if (limit-- == 0) break;
                     if (animal.getMaxSizeAnimalCell() > 0 && animal.getCountAnimal() >= 0) {
                         double percentageOfMax = (double) animal.getCountAnimal() / animal.getMaxSizeAnimalCell() * 100.0;
-                        cellContent.append(Color.getPercentAnimal(percentageOfMax)).append(animal.getShortName()).append(Color.RESET);
-                    } else {
-                        cellContent.append(emptySymbol);
+                        cellContent.append(Color.getPercentAnimal(percentageOfMax))
+                                .append(animal.getShortName())
+                                .append(Color.RESET);
+                        animalCount++;
                     }
                 }
 
-                int symbolsToAdd = limitAnimalviewInCell - cellContent.length();
-                cellContent.append(emptySymbol.repeat(Math.max(0, symbolsToAdd)));
+                int symbolsToAdd = limitAnimalviewInCell - animalCount;
+                if (animalCount == 0) {
+                    cellContent.append(noAnimalSymbol.repeat(limitAnimalviewInCell));
+                } else {
+                    cellContent.append(noAnimalSymbol.repeat(Math.max(0, symbolsToAdd)));
+                }
 
                 System.out.print(cellContent);
                 System.out.print("║");
@@ -71,8 +78,6 @@ public class ViewAnimal {
             System.out.println();
         }
         System.out.println(getDownBorder(row, limitAnimalviewInCell));
-
-
 
         Set<ExampleClass> animalsInFirstCell = mapGame[0][0];
         List<ExampleClass> animalList = new ArrayList<>(animalsInFirstCell);
