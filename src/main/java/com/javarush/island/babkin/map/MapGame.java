@@ -7,12 +7,13 @@ import java.util.Set;
 
 public class MapGame {
 
-    private static final int COUNTROWS = 3;
-    private static final int COUNTCOLUMNS = 3;
+    private static final int COUNTROWS = 10;
+    private static final int COUNTCOLUMNS = 10;
 
-    private static final Set<ExampleClass>[][] mapGame = new HashSet[COUNTROWS][COUNTCOLUMNS];
+    private static final Set<ExampleClass>[][] mapGame;
 
     static {
+        mapGame = new Set[COUNTROWS][COUNTCOLUMNS];
         for (int i = 0; i < mapGame.length; i++) {
             for (int j = 0; j < mapGame[i].length; j++) {
                 mapGame[i][j] = new HashSet<>();
