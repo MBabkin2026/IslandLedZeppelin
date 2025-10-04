@@ -70,8 +70,6 @@ public class MoveAnimal {
         for(int i = 0; i < maketMapIndex.length; i++) {
             for(int j = 0; j < maketMapIndex[i].length; j++) {
                 if (maketMapIndex[i][j] == 1) {
-                    System.out.print("true");
-                    System.out.print(" i - " + i + ", j - " + j );
                     for(int step = 0; step < maxSpeedCell; step++){
                         isMove(i,j);
                     }
