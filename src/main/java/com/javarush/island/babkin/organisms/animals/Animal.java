@@ -27,13 +27,13 @@ public class Animal implements Eatable, Moveable, Reproducible {
     }
 
     @Override
-    public void move() {
-
+    public boolean move() {
+        return true;
     }
 
     @Override
-    public double eat() {
-        return 0.0d;
+    public boolean eat() {
+        return true;
     }
 
     @Override
