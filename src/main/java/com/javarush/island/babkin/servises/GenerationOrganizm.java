@@ -29,12 +29,8 @@ public class GenerationOrganizm {
                     } else {
                         System.out.println("Error: Class for " + nameAnimal + " not found!");
                     }
-    //                    System.out.println(randomQuantity);
-    //                    System.out.println(nameAnimal);
-    //                    System.out.println(classExample);
 
                 }
-                System.out.println(mapGame[i][j]);
                 mapGame[i][j] = setRandomAnimal;
 
             }
