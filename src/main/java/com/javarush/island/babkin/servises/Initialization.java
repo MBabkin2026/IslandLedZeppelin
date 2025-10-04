@@ -9,11 +9,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-//import java.lang.Object;
+
 
 public class Initialization extends Animal implements Cloneable {
-
-    //        Мы записываем в мапу копии классов и с мапы по Строке выводим копию классов животных и их инициализируем
 
     public static Map<String, Object> mapCopyAnimals = new HashMap<>();
 
@@ -55,42 +53,20 @@ public class Initialization extends Animal implements Cloneable {
         mapCopyAnimals.put("Grass", new Grass());
     }
 
-//    public Initialization() {
-//        try {
-//            mapCopyAnimals.put("Wolf", new Wolf().clone());
-//            mapCopyAnimals.put("Rabbit", new Rabbit().clone());
-//        } catch (CloneNotSupportedException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 
-//    private Initialization(){}
-
-//    public void putMapCopyAnimals(String str,Class clazz) {
-//        try {
-//            var clone = cloneExampleClass.getClass().clone();
-//            mapCopyAnimals.put()
-//            Initialization.mapCopyAnimals.put(str, new clazz().clone());
-//        } catch (CloneNotSupportedException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
-    public void putMapCopyAnimals(String str, Class<?> clazz) { // Class<?> чтобы принимать любой класс
+    public void putMapCopyAnimals(String str, Class<?> clazz) {
 
         try {
-            // Создаем экземпляр класса используя рефлексию.
-            Object obj = clazz.getDeclaredConstructor().newInstance(); // getDeclaredConstructor() и newInstance() требуют обработки исключений
 
-            // Проверяем, реализует ли объект Cloneable
+            Object obj = clazz.getDeclaredConstructor().newInstance();
+
+
             if (!(obj instanceof Cloneable)) {
                 throw new IllegalArgumentException("Class " + clazz.getName() + " does not implement Cloneable.");
             }
 
-            // Клонируем объект
             Object clonedObj = cloneObject(obj);
 
-            // Добавляем клон в карту
             mapCopyAnimals.put(str, clonedObj);
 
         } catch (NoSuchMethodException e) {
@@ -121,115 +97,10 @@ public class Initialization extends Animal implements Cloneable {
     }
 
 
-    //    mapCopyAnimals.put("Wolf", new Wolf().clone());
-//    mapCopyAnimals.put("Rabbit", new Rabbit().clone());
-
-
-    //    Object rabbit3 = mapAnim2.get("Rabbit");
-//    var exampleClass3 = ExampleClass.initClass(rabbit3.getClass());
-//    var maxSizeAnimalCell2 = exampleClass3.getMaxSizeAnimalCell();
-//        System.out.println(rabbit3);
-
-
-
-//    Class clazz;
-//    ExampleClass exampleClass;
-    public ExampleClass cloneExampleClass;
-//    public Rabbit cloneRabbitClass;
-
-
-//    public Initialization(Class clazz) {
-//        try {
-//            var exampleClass = ExampleClass.initClass(clazz);
-//            ExampleClass cloneExampleClass = exampleClass.clone();
-//        } catch (CloneNotSupportedException e) {
-//            throw new RuntimeException(e);
-//            throw new RuntimeException("cloneExampleClass",e);
-//        }
-
-//    }
-
-    public Initialization(Class clazz) {
-
-            Class<? extends Class> aClass = clazz.getClass();
-
-//            var cloneRabbitClass = clazz.clone();
-
-
-    }
-
-    public static void mapCopyAnimals() {
-    }
-
-
-    public ExampleClass getCloneExampleClass() {
-        return cloneExampleClass;
-    }
-
     @Override
     protected Initialization clone() throws CloneNotSupportedException {
         return (Initialization) super.clone();
     }
-
-    //    public static ExampleClass getPrototype(exampleClass) {
-//        try {
-//            return getClone();
-//        } catch (CloneNotSupportedException e) {
-//            throw new RuntimeException(e);
-//        }
-//        Product product = new Product("Macbook Pro", 3000);
-//        Product copyOfProduct = (Product) product.clone();
-//    }
-
-//    @Override
-//    protected Object clone() throws CloneNotSupportedException {
-//        return super.clone();
-//    }
-
-//    public static ExampleClass getClone() throws CloneNotSupportedException {
-//        return (ExampleClass) exampleClass.clone();
-//    }
-
-
-//    private int countAnimal;
-//    private double packweight;
-//    private double foodAllPack;
-
-//        public Initialization(int countAnimal, double packweight, double foodAllPack){
-//            this.countAnimal =
-//        }
-
-
-//    private double wiegthOneAnimal;
-//
-//    private static AnnotationAnimals initialAnimal;
-
-//        public int getCountAnimal() {
-//            countAnimal = RandomeImportance.getRandomQuantity(new ExampleClas().getMaxSizeAnimalCell());
-//        }
-
-//        public double getPackweight() {
-//            packweight = getWiegthOneAnimal() * getCountAnimal();
-//        }
-//
-//        public double getFoodAllPack() {
-//            foodAllPack = getCountAnimal() * initialAnimal.wiegthEating();
-//        }
-
-//    public static AnnotationAnimals getAnnotationAnimals() {
-//        return initialAnimal;
-//    }
-
-//        public static double getWiegthOneAnimal() {
-//            return getAnnotationAnimals().wiegthOneAnimal();
-//        }
-
-
-    //        AnnotationAnimals initialAnimal = (AnnotationAnimals) animalClass.getAnnotation(AnnotationAnimals.class);
-
-
-
-
 
 
 }
