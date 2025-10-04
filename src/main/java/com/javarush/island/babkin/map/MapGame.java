@@ -7,8 +7,8 @@ import java.util.Set;
 
 public class MapGame {
 
-    private static final int COUNTROWS = 10;
-    private static final int COUNTCOLUMNS = 10;
+    private static final int COUNTROWS = 100;
+    private static final int COUNTCOLUMNS = 20;
 
     private static final Set<ExampleClass>[][] mapGame;
 
