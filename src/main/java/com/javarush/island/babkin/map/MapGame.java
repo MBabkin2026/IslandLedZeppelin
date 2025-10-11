@@ -12,6 +12,8 @@ public class MapGame {
 
     private static final Set<ExampleClass>[][] mapGame;
 
+    private MapGame(){}
+
     static {
         mapGame = new Set[COUNTROWS][COUNTCOLUMNS];
         for (int i = 0; i < mapGame.length; i++) {
