@@ -9,10 +9,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class EatAnimal {
     private static final Lock mapGameLock = MapGameLock.getMapGameLock();
+
+    private EatAnimal(){}
 
     public static void doEatAnimal() {
         mapGameLock.lock();
