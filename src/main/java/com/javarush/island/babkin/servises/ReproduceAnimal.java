@@ -7,27 +7,36 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.locks.Lock;
 
 public class ReproduceAnimal {
+    private static final Lock mapGameLock = MapGameLock.getMapGameLock();
+
+    private static final double PERCENTAGE = 0.30;
 
     public static void doReproduceAnimal() {
-        Set<ExampleClass>[][] mapGame = MapGame.getMapGame();
-        for (int i = 0; i < mapGame.length; i++) {
-            for (int j = 0; j < mapGame[i].length; j++) {
-                Set<ExampleClass> currentSet = mapGame[i][j];
+        mapGameLock.lock();
+        try {
+            Set<ExampleClass>[][] mapGame = MapGame.getMapGame();
+            for (int i = 0; i < mapGame.length; i++) {
+                for (int j = 0; j < mapGame[i].length; j++) {
+                    Set<ExampleClass> currentSet = mapGame[i][j];
 
-                currentSet = mergeDuplicates(currentSet);
+                    currentSet = mergeDuplicates(currentSet);
 
-                for (ExampleClass animal : currentSet) {
-                    var maxSizeAnimalCell = animal.getMaxSizeAnimalCell();
-                    var countAnimal = animal.getCountAnimal();
-                    double percentage = 0.30; // 30% как десятичная дробь
-                    if(countAnimal < maxSizeAnimalCell) {
-                        int increasedNumber = (int) (maxSizeAnimalCell * (1 + percentage));
-                        animal.addValue(increasedNumber);
+                    for (ExampleClass animal : currentSet) {
+                        var maxSizeAnimalCell = animal.getMaxSizeAnimalCell();
+                        var countAnimal = animal.getCountAnimal();
+                        double percentage = PERCENTAGE;
+                        if (countAnimal < maxSizeAnimalCell) {
+                            int increasedNumber = (int) (maxSizeAnimalCell * (1 + percentage));
+                            animal.addValue(increasedNumber);
+                        }
                     }
                 }
             }
+        } finally {
+            mapGameLock.unlock();
         }
     }
 
