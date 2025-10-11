@@ -8,54 +8,62 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class EatAnimal {
+    private static final Lock mapGameLock = MapGameLock.getMapGameLock();
 
     public static void doEatAnimal() {
-        Set<ExampleClass>[][] mapGame = MapGame.getMapGame();
-        for (int i = 0; i < mapGame.length; i++) {
-            for (int j = 0; j < mapGame[i].length; j++) {
-                Set<ExampleClass> currentSet = mapGame[i][j];
-                List<ExampleClass> toProcess = new ArrayList<>(currentSet);
+        mapGameLock.lock();
+        try {
+            Set<ExampleClass>[][] mapGame = MapGame.getMapGame();
+            for (int i = 0; i < mapGame.length; i++) {
+                for (int j = 0; j < mapGame[i].length; j++) {
+                    Set<ExampleClass> currentSet = mapGame[i][j];
+                    List<ExampleClass> toProcess = new ArrayList<>(currentSet);
 
-                for (int index = 0; index < toProcess.size(); index++) {
-                    ExampleClass animal1 = toProcess.get(index);
+                    for (int index = 0; index < toProcess.size(); index++) {
+                        ExampleClass animal1 = toProcess.get(index);
 
-                    for (Iterator<ExampleClass> iterator = currentSet.iterator(); iterator.hasNext(); ) {
-                        ExampleClass animal2 = iterator.next();
+                        for (Iterator<ExampleClass> iterator = currentSet.iterator(); iterator.hasNext(); ) {
+                            ExampleClass animal2 = iterator.next();
 
-                        if (animal1 == animal2) {
-                            continue;
-                        }
+                            if (animal1 == animal2) {
+                                continue;
+                            }
 
-                        var nameClass1 = animal1.getClass().getSimpleName();
-                        var i1 = Animal.animalsClass.indexOf(nameClass1);
+                            var nameClass1 = animal1.getClass().getSimpleName();
+                            var i1 = Animal.animalsClass.indexOf(nameClass1);
 
-                        var nameClass2 = animal2.getClass().getSimpleName();
-                        var i2 = Animal.animalsClass.indexOf(nameClass2);
+                            var nameClass2 = animal2.getClass().getSimpleName();
+                            var i2 = Animal.animalsClass.indexOf(nameClass2);
 
-                        if (i1 == -1 || i2 == -1) {
-                            continue;
-                        }
+                            if (i1 == -1 || i2 == -1) {
+                                continue;
+                            }
 
-                        var mapEat = Animal.probabilityEat;
+                            var mapEat = Animal.probabilityEat;
 
-                        var wiegthEating1 = animal1.getWiegthEating();
-                        var packweight2 = animal2.getPackweight();
+                            var wiegthEating1 = animal1.getWiegthEating();
+                            var packweight2 = animal2.getPackweight();
 
-                        boolean valuesRandom = extracted(mapEat, i1, i2);
-                        if (valuesRandom) {
-                            var v = packweight2 - wiegthEating1;
-                            animal2.setPackweight(v);
-                        }
+                            boolean valuesRandom = extracted(mapEat, i1, i2);
+                            if (valuesRandom) {
+                                var v = packweight2 - wiegthEating1;
+                                animal2.setPackweight(v);
+                            }
 
-                        var packweightRepeat2 = animal2.getPackweight();
-                        if (packweightRepeat2 <= 0) {
-                            iterator.remove();
+                            var packweightRepeat2 = animal2.getPackweight();
+                            if (packweightRepeat2 <= 0) {
+                                iterator.remove();
+                            }
                         }
                     }
                 }
             }
+        } finally {
+            mapGameLock.unlock();
         }
     }
 
