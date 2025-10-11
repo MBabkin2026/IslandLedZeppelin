@@ -16,6 +16,7 @@ public class MoveAnimal {
 
     public static int[][] maketMapIndex = new int[countrows][countcolumns];
 
+    private MoveAnimal(){}
 
     public static void doMovingAnimals() {
         var mapGame = MapGame.getMapGame();
@@ -92,19 +93,15 @@ public class MoveAnimal {
             if (value == 0 && row > 0) { // вверх
                 maketMapIndex[row - 1][column] = maketMapIndex[row][column];
                 maketMapIndex[row][column] = 0;
-                return;
             } else if (value == 1 && row < maxRow) { // вниз
                 maketMapIndex[row + 1][column] = maketMapIndex[row][column];
                 maketMapIndex[row][column] = 0;
-                return;
             } else if (value == 2 && column > 0) { // влево
                 maketMapIndex[row][column - 1] = maketMapIndex[row][column];
                 maketMapIndex[row][column] = 0;
-                return;
             } else if (value == 3 && column < maxCol) { // вправо
                 maketMapIndex[row][column + 1] = maketMapIndex[row][column];
                 maketMapIndex[row][column] = 0;
-                return;
             }
         } finally {
             lock.unlock();
