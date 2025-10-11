@@ -11,18 +11,6 @@ public class Grass {
     public Grass(){
     }
 
-    public void setBirthGrass() {
-        this.countGrass = 200;
-    }
-
-    public double getCountGrass() {
-        return countGrass;
-    }
-
-    public void setCountGrass(double countGrass) {
-        this.countGrass = countGrass;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
