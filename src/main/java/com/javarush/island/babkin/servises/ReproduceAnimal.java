@@ -14,6 +14,8 @@ public class ReproduceAnimal {
 
     private static final double PERCENTAGE = 0.30;
 
+    private ReproduceAnimal(){}
+
     public static void doReproduceAnimal() {
         mapGameLock.lock();
         try {
