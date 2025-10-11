@@ -36,6 +36,8 @@ public class ViewAnimal {
     private static final String SIMBOL_DOWN_LEFT = "╚";
     private static final String SIMBOL_DOWN_RIGHT = "╝";
 
+    private ViewAnimal(){}
+
 
     public static void doViewAnimal(int viewRow, int viewColumn) {
         mapGameLock.lock();
