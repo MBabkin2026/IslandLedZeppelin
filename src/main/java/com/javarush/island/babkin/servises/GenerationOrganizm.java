@@ -9,7 +9,7 @@ import java.util.*;
 
 public class GenerationOrganizm {
 
-
+    private GenerationOrganizm(){}
     public static Set<ExampleClass>[][] getGenerationOrganizm() {
 
         var mapGame = MapGame.getMapGame();
