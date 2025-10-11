@@ -9,6 +9,8 @@ import static com.javarush.island.babkin.servises.ViewAnimal.doViewAnimal;
 
 public class Runner {
 
+    private Runner(){}
+
     public static void run() {
 
         GenerationOrganizm.getGenerationOrganizm();
